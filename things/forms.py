@@ -1,9 +1,12 @@
 """Forms of the project."""
 
 from django import forms
+from things.models import Thing
 
 class ThingForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    description = forms.CharField(widget=forms.Textarea)
-    quantity = forms.IntegerField(widget=forms.NumberInput)
+
+    class Meta:
+        model = Thing
+        fields = ['name', 'description', 'quantity']
+        widgets = {'description': forms.Textarea(), 'quantity': forms.NumberInput()}
 
